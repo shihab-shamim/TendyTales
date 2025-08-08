@@ -101,9 +101,6 @@ const MyCart = () => {
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Product</th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Price</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Stock</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Rating</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
                   <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Actions</th>
                 </tr>
               </thead>
@@ -143,7 +140,7 @@ const MyCart = () => {
                         <div className="space-y-1">
                           <div className="flex items-center gap-2">
                             <span className="text-lg font-semibold text-gray-900">
-                              ৳{discountedPrice(parseInt(product.price), parseInt(product.persent))}
+                              ${discountedPrice(parseInt(product.price), parseInt(product.persent))}
                             </span>
                             <span className="bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded">
                               -{product.persent}%
@@ -155,44 +152,15 @@ const MyCart = () => {
                         <span className="text-lg font-semibold text-gray-900">৳{product.price}</span>
                       )}
                     </td>
-                    <td className="px-6 py-4">
-                      <div className="flex items-center gap-2">
-                        <Package className="w-4 h-4 text-gray-400" />
-                        <span className="text-sm font-medium text-gray-900">{product.stock}</span>
-                        <span className="text-xs text-gray-500">units</span>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="flex items-center gap-1">
-                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                        <span className="text-sm font-medium text-gray-900">{product.ratings}</span>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="flex flex-col gap-2">
-                        {product.isNewArrival && (
-                          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                            New Arrival
-                          </span>
-                        )}
-                        {product.discount && (
-                          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                            On Sale
-                          </span>
-                        )}
-                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                          In Stock
-                        </span>
-                      </div>
-                    </td>
+                   
+                    
+                   
                     <td className="px-6 py-4 text-right">
                       <div className="flex items-center justify-end gap-2">
-                        <button className="text-blue-600 hover:text-blue-900 p-2 rounded-md hover:bg-blue-50 transition-colors">
-                          <Eye className="w-4 h-4" />
-                        </button>
+                       
                         <button
                           onClick={() => handleDeleteSingle(product._id)}
-                          className="text-red-600 hover:text-red-900 p-2 rounded-md hover:bg-red-50 transition-colors"
+                          className="text-red-600 hover:text-red-900 p-2 rounded-md hover:bg-red-50 transition-colors cursor-pointer"
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
