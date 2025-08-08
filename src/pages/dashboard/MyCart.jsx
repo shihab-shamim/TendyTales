@@ -8,7 +8,7 @@ const MyCart = () => {
   const { carts = [],cartsRefetch } = useCarts();
   const axiosSecure=useAxiosSecure()
   // console.log(carts);
-  const [products, setProducts] = useState(carts);
+  
   
   const [selectedProducts, setSelectedProducts] = useState([]);
 
@@ -22,20 +22,54 @@ const MyCart = () => {
 
   const handleSelectAll = (e) => {
     if (e.target.checked) {
-      setSelectedProducts(products.map(product => product._id));
+      setSelectedProducts(carts.map(product => product._id));
     } else {
       setSelectedProducts([]);
     }
   };
 
   const handleDeleteSelected = () => {
-    if (selectedProducts.length > 0) {
-      const confirmed = window.confirm(`Are you sure you want to delete ${selectedProducts.length} product(s)?`);
-      if (confirmed) {
-        setProducts(prev => prev.filter(product => !selectedProducts.includes(product._id)));
-        setSelectedProducts([]);
-      }
+
+    Swal.fire({
+  title: "Are you sure?",
+  text: "Delete Your Carts",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#3085d6",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Yes"
+}).then(async(result) => {
+  if (result.isConfirmed) {
+    // Swal.fire({
+    //   title: "Deleted!",
+    //   text: "Your file has been deleted.",
+    //   icon: "success"
+    // });
+    // console.log(productId);
+    const ids=[...selectedProducts]
+    const {data}=await axiosSecure.post(`/cart`,ids)
+    console.log(data);
+    if(data?.deletedCount>0){
+       Swal.fire({
+      title: "Deleted!",
+      text: "Your cart deleteds.",
+      icon: "success"
+    });
+         cartsRefetch()
+         setSelectedProducts([])
     }
+   
+    
+
+  }
+});
+    // if (selectedProducts.length > 0) {
+    //   const confirmed = window.confirm(`Are you sure you want to delete ${selectedProducts.length} product(s)?`);
+    //   if (confirmed) {
+    //     setProducts(prev => prev.filter(product => !selectedProducts.includes(product._id)));
+    //     setSelectedProducts([]);
+    //   }
+    // }
   };
 
   const handleDeleteSingle = (productId) => {
@@ -55,7 +89,8 @@ const MyCart = () => {
     //   icon: "success"
     // });
     // console.log(productId);
-    const {data}=await axiosSecure.delete(`/cart/${productId}`)
+    const ids=[productId]
+    const {data}=await axiosSecure.post(`/cart`,ids)
     console.log(data);
     if(data?.deletedCount>0){
        Swal.fire({
@@ -81,7 +116,7 @@ const MyCart = () => {
     <div className="min-h-screen bg-gray-50 p-4 sm:p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        {/* <div className="bg-white rounded-lg shadow-sm border border-gray-200 mb-6">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 mb-6">
           <div className="px-4 sm:px-6 py-4 border-b border-gray-200">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
               <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Product Management</h1>
@@ -96,7 +131,7 @@ const MyCart = () => {
               )}
             </div>
           </div>
-        </div> */}
+        </div>
 
         {/* Table */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
@@ -107,7 +142,7 @@ const MyCart = () => {
                   <th className="px-6 py-3 text-left">
                     <input
                       type="checkbox"
-                      checked={selectedProducts.length === products.length && products.length > 0}
+                      checked={selectedProducts.length === carts.length && carts.length > 0}
                       onChange={handleSelectAll}
                       className="w-4 h-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
                     />

@@ -25,11 +25,14 @@ const LogIn = () => {
       const {user}=await logIn(email,password)
       // console.log(user);
       if(user){
-        navigate(from);
+        setTimeout(() => {
+ navigate(from);
+}, 500); // 500ms delay
+        
       }
     }
     catch(error){
-      // console.log(error);
+      console.log(error);
     }
   }
   //  if (user) {

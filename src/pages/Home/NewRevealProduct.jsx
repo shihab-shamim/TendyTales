@@ -15,7 +15,6 @@ const NewRevealProduct = () => {
   const axiosSecure=useAxiosSecure()
   const {role,refetch}=useUserRole();
  const {carts,cartsRefetch}=useCarts() 
- console.log(carts);
 const navigate=useNavigate();
 useEffect(()=>{
   refetch()
@@ -72,7 +71,7 @@ else{
   // console.log(product);
   const{name,price,image,category,description,isNewArrival ,stock,ratings,discount,persent,_id}=product
   const addCard={name,price,image,category,description,isNewArrival,stock,ratings,discount,persent,email:user?.email,productId:_id}
-  console.log(addCard);
+
   const  {data}=await axiosSecure.post("/addCarts",addCard);
   if(data?.insertedId){
     cartsRefetch()

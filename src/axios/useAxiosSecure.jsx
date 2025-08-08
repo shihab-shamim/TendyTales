@@ -30,7 +30,7 @@ const { logOut } = useAuth() ;
             if(err.response.status === 401 ){
                 console.log("log out the use");
                 logOut()
-                navigate('/login')
+                navigate('/signin')
 
             }
             return Promise.reject(err);
