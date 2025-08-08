@@ -1,27 +1,14 @@
 import React, { useState } from 'react';
 import { Trash2, Star, Package, Eye } from 'lucide-react';
-// import useCarts from '../../hooks/useCarts';
+import useCarts from '../../hooks/useCarts';
+import Swal from 'sweetalert2';
+import useAxiosSecure from '../../axios/useAxiosSecure';
 
 const MyCart = () => {
-  // const { carts = [] } = useCarts();
-  const [products, setProducts] = useState([
-    {
-      _id: "688f7a71fe59cc6f9a664520",
-      productId: "68792a929258f9bae82b2661",
-      name: "Denim Jeans Pant",
-      category: "pant",
-      description: "Comfortable and durable denim jeans for daily wear.",
-      price: "1880",
-      discount: true,
-      persent: "50",
-      stock: "200",
-      ratings: "4.5",
-      isNewArrival: true,
-      image: "https://images.othoba.com/images/thumbs/0633343_khaki-stylish-premium-gaberdine-pant-for-men-by-winner-style_400.webp",
-      email: "w@gmail.com"
-    },
-    // Add more products if needed
-  ]);
+  const { carts = [],cartsRefetch } = useCarts();
+  const axiosSecure=useAxiosSecure()
+  // console.log(carts);
+  const [products, setProducts] = useState(carts);
   
   const [selectedProducts, setSelectedProducts] = useState([]);
 
@@ -52,22 +39,49 @@ const MyCart = () => {
   };
 
   const handleDeleteSingle = (productId) => {
-    const confirmed = window.confirm('Are you sure you want to delete this product?');
-    if (confirmed) {
-      setProducts(prev => prev.filter(product => product._id !== productId));
-      setSelectedProducts(prev => prev.filter(id => id !== productId));
+    Swal.fire({
+  title: "Are you sure?",
+  text: "Delete Your Cart",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#3085d6",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Yes"
+}).then(async(result) => {
+  if (result.isConfirmed) {
+    // Swal.fire({
+    //   title: "Deleted!",
+    //   text: "Your file has been deleted.",
+    //   icon: "success"
+    // });
+    // console.log(productId);
+    const {data}=await axiosSecure.delete(`/cart/${productId}`)
+    console.log(data);
+    if(data?.deletedCount>0){
+       Swal.fire({
+      title: "Deleted!",
+      text: "Your cart deleted.",
+      icon: "success"
+    });
+         cartsRefetch()
     }
+   
+    
+
+  }
+});
+  
   };
 
   const discountedPrice = (price, discount) => {
-    return Math.round(price - (price * discount / 100));
+    return Math.round(price + (price * discount / 100));
   };
 
   return (
     <div className="min-h-screen bg-gray-50 p-4 sm:p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 mb-6">
+        {/* <div className="bg-white rounded-lg shadow-sm border border-gray-200 mb-6">
           <div className="px-4 sm:px-6 py-4 border-b border-gray-200">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
               <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Product Management</h1>
@@ -82,7 +96,7 @@ const MyCart = () => {
               )}
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Table */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
@@ -105,7 +119,7 @@ const MyCart = () => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {products.map((product) => (
+                {carts.map((product) => (
                   <tr
                     key={product._id}
                     className={`hover:bg-gray-50 transition-colors ${selectedProducts.includes(product._id) ? 'bg-blue-50 border-blue-200' : ''}`}
@@ -139,14 +153,14 @@ const MyCart = () => {
                       {product.discount ? (
                         <div className="space-y-1">
                           <div className="flex items-center gap-2">
-                            <span className="text-lg font-semibold text-gray-900">
+                            <span className="text-lg font-semibold text-gray-900 line-through">
                               ${discountedPrice(parseInt(product.price), parseInt(product.persent))}
                             </span>
                             <span className="bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded">
                               -{product.persent}%
                             </span>
                           </div>
-                          <span className="text-sm text-gray-500 line-through">৳{product.price}</span>
+                          <span className="text-sm text-gray-500">${product.price}</span>
                         </div>
                       ) : (
                         <span className="text-lg font-semibold text-gray-900">৳{product.price}</span>
@@ -174,7 +188,7 @@ const MyCart = () => {
         </div>
 
         {/* Footer Stats */}
-        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        {/* <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
           <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
             <div className="text-sm text-gray-500">Total Products</div>
             <div className="text-2xl font-bold text-gray-900">{products.length}</div>
@@ -195,7 +209,7 @@ const MyCart = () => {
               {products.filter(p => p.discount).length}
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
