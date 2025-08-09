@@ -26,7 +26,7 @@ const Banner = () => {
                 </div>
                 
                 {/* Stats */}
-                <div className="flex mt-12">
+                <div className="flex mt-12 py-12 lg:py-0">
                   <div className="mr-10 last:mr-0">
                     <h3 className="text-2xl md:text-3xl font-bold"><CountUp end={200} duration={4}/>+</h3>
                     <p className="text-xs md:text-sm text-gray-600">International Brands</p>
@@ -43,7 +43,7 @@ const Banner = () => {
               </div>
               
               {/* Right side image */}
-              <div className="w-full lg:w-1/2 h-[350px]  md:h-[600px]  relative">
+              <div className="w-full lg:w-1/2 h-[400px]  md:h-[600px]  relative">
                 <img 
                   src={banner}
                   alt="Fashion models"

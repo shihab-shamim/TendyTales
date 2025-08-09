@@ -8,7 +8,7 @@ const ProductCard = ({ product, onAddToCart }) => {
 
   return (
     <div
-      className="group relative bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-gray-200"
+      className="group relative bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-gray-200"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -37,17 +37,7 @@ const ProductCard = ({ product, onAddToCart }) => {
         )}
 
         {/* Wishlist Button */}
-        <button
-          onClick={() => setIsLiked(!isLiked)}
-          className={`absolute top-12 right-3 p-2 rounded-full transition-all duration-200 ${
-            isLiked
-              ? 'bg-red-500 text-white'
-              : 'bg-white/80 hover:bg-white text-gray-600 hover:text-red-500'
-          }`}
-        >
-          <Heart size={16} className={isLiked ? 'fill-current' : ''} />
-        </button>
-
+      
         {/* Hover Actions */}
         <div
           className={`absolute inset-0 bg-black/20 flex items-center justify-center gap-3 transition-all duration-300 ${
@@ -56,7 +46,7 @@ const ProductCard = ({ product, onAddToCart }) => {
         >
           <button
             onClick={() => onAddToCart(product)}
-            className="bg-white hover:bg-gray-50 text-gray-800 px-6 py-3 rounded-lg font-medium shadow-lg transform transition-all duration-200 hover:scale-105 flex items-center gap-2"
+            className="bg-white hover:bg-gray-50 cursor-pointer  dark:text-gray-400  dark:bg-gray-800 hover:dark:bg-gray-800 text-gray-800 px-6 py-3 rounded-lg font-medium shadow-lg transform transition-all duration-200 hover:scale-105 flex items-center gap-2"
           >
             <ShoppingCart size={18} />
             Add to Cart
@@ -67,12 +57,12 @@ const ProductCard = ({ product, onAddToCart }) => {
       {/* Product Info */}
       <div className="p-4 space-y-2">
         {/* Category */}
-        <p className="text-xs text-gray-500 uppercase tracking-wide font-medium">
+        <p className="text-xs text-gray-500 uppercase tracking-wide font-medium  dark:text-gray-400">
           {product.category}
         </p>
 
         {/* Product Name */}
-        <h3 className="font-semibold text-gray-900 line-clamp-2 group-hover:text-blue-600 transition-colors">
+        <h3 className="font-semibold text-gray-900 line-clamp-2  dark:text-gray-400 group-hover:text-blue-600 transition-colors">
           {product.name}
         </h3>
 
@@ -81,7 +71,7 @@ const ProductCard = ({ product, onAddToCart }) => {
 
         {/* Price */}
         <div className="flex items-center gap-2">
-          <span className="text-lg font-bold text-gray-900">
+          <span className="text-lg font-bold text-gray-900  dark:text-gray-400">
             ${product.price}
           </span>
         {product.discount && product.persent && (
