@@ -1,8 +1,10 @@
 import { useForm } from "react-hook-form";
 import { Link, Navigate, useLocation, useNavigate } from 'react-router'; 
 import useAuth from '../../hooks/useAuth';
+import { useEffect } from "react";
 
 const LogIn = () => {
+    
   const {logIn,user}=useAuth()
   
   const location=useLocation()
@@ -38,6 +40,9 @@ const LogIn = () => {
   //  if (user) {
   //   return <Navigate to="/" replace />;
   // }
+
+
+  
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-800 px-4">
       <div className="max-w-md w-full space-y-8 bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md">

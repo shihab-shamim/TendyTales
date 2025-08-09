@@ -51,7 +51,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <a href="/" className="text-2xl font-bold tracking-tighter">
-            StyleNest
+            TendyTales
           </a>
 
           {/* Desktop Navigation */}
@@ -129,15 +129,11 @@ const Navbar = () => {
 
               {/* Overlay */}
             </div>
-            <a href="#" className="hover:text-gray-600">
-              On Sale
-            </a>
-            <Links to='/private' className="hover:text-gray-600">
+           
+            <a href='#newArrive' className="hover:text-gray-600">
               New Arrivals
-            </Links>
-            <a href="#" className="hover:text-gray-600">
-              Brands
             </a>
+
           </div>
           <div>
             {/* <button className='btn' onClick={handleThemeChange}>Theme Change</button> */}
@@ -174,32 +170,33 @@ const Navbar = () => {
               <input
                 type="text"
                 placeholder="Search for products..."
-                className="w-[300px] pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-gray-200"
+                className="w-[300px] pl-10 pr-4 py-2 bg-gray-100 outline-1 dark:bg-gray-800 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-gray-200"
               />
             </div>
 
             <div className="flex items-center space-x-4">
               {/* Cart */}
               <button className="hover:text-gray-600 relative group">
-               <Links to='/dashboard/cart'> <ShoppingCart className="w-6 h-6" /></Links> 
+               <Links to='/dashboard/cart'> <ShoppingCart className="w-6 h-6 cursor-pointer" />
                 <span className="absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
                   {carts?.length || 0}
                 </span>
+                </Links> 
                 <div className="absolute right-0 top-full mt-2 w-80 bg-white shadow-lg rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                    <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div className="bg-white dark:bg-gray-500 rounded-xl shadow-lg overflow-hidden">
     
      
 
       {/* Mobile Card View */}
       <div className="">
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 px-4 py-3 border-b border-gray-200">
+        <div className="bg-gradient-to-r  from-blue-50 to-indigo-50 px-4 py-3 border-b border-gray-200">
           <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wider">Products</h3>
         </div>
-        <Links to='/dashboard/cart' className="divide-y divide-gray-100">
+        <Links to='/dashboard/cart' className="divide-y divide-gray-100 ">
           {carts.map((product) => (
             <div 
               key={product._id} 
-              className="p-4 hover:bg-gradient-to-r hover:from-blue-25 hover:to-indigo-25 transition-all duration-200"
+              className="p-4 hover:bg-gradient-to-r hover:from-blue-25 hover:to-indigo-25 transition-all duration-200 "
             >
               <div className="flex items-center space-x-4">
                 <div className="relative flex-shrink-0">
@@ -236,8 +233,8 @@ const Navbar = () => {
 
               {/* User */}
               <button className="hover:text-gray-600 relative group">
-                <User className="w-6 h-6" />
-                <div className="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-gray-800  shadow-lg rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <User className="w-6 h-6 cursor-pointer" />
+                <div className="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-gray-500 shadow-lg rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                   {/* <div className="py-2"> */}
 
                   {user ?  <div className="py-2">
@@ -275,17 +272,17 @@ const Navbar = () => {
           <button className="lg:hidden" onClick={() => setIsOpen(!isOpen)}>
             <div className="space-y-1.5">
               <span
-                className={`block w-6 h-0.5 bg-black transition-transform duration-200 ${
+                className={`block w-6 h-0.5 bg-black dark:bg-gray-500 transition-transform duration-200 ${
                   isOpen ? "rotate-45 translate-y-2" : ""
                 }`}
               ></span>
               <span
-                className={`block w-6 h-0.5 bg-black transition-opacity duration-200 ${
+                className={`block w-6 h-0.5 bg-black transition-opacity duration-200 dark:bg-gray-500 ${
                   isOpen ? "opacity-0" : ""
                 }`}
               ></span>
               <span
-                className={`block w-6 h-0.5 bg-black transition-transform duration-200 ${
+                className={`block w-6 h-0.5 bg-black transition-transform duration-200 dark:bg-gray-500 ${
                   isOpen ? "-rotate-45 -translate-y-2" : ""
                 }`}
               ></span>
