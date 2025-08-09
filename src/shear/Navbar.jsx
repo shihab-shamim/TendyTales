@@ -32,6 +32,10 @@ const Navbar = () => {
     },
   ];
 
+  const handleAutoClose=()=>{
+    setIsOpen(!isOpen)
+  }
+
   useEffect(() => {
     document.querySelector("html").setAttribute("data-theme", theme);
     localStorage.setItem("mode", theme);
@@ -366,6 +370,7 @@ const Navbar = () => {
                         <div className="space-y-2 pl-2">
                           {category.subcategories.map((sub, subIndex) => (
                             <a
+                            onClick={handleAutoClose}
                               key={subIndex}
                               href="#"
                               className="block text-gray-600 dark:text-white hover:text-black"
@@ -379,15 +384,13 @@ const Navbar = () => {
                   </div>
                 </div>
 
-                <a href="#" className="block text-lg py-2">
-                  On Sale
-                </a>
-                <a href="#" className="block text-lg py-2">
+                
+                <a href="#newArrive" className="block text-lg py-2" onClick={handleAutoClose}>
                   New Arrivals
                 </a>
-                <a href="#" className="block text-lg py-2">
-                  Brands
-                </a>
+                <Links to="dashboard/cart" onClick={handleAutoClose}>
+                My Carts
+                </Links>
 
                 <div className="pt-6 space-y-4 flex flex-col">
                   {user?<><button
