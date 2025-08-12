@@ -73,31 +73,31 @@ if(isLoading) return <div className="max-w-[200px] mx-auto mt-8"><ClipLoader /><
 
     return (
      <>
- <div className="max-w-md mx-auto bg-white shadow-md hover:shadow-lg rounded-2xl overflow-hidden p-6 flex items-start gap-5 transition duration-300">
+ <div className="max-w-md mx-auto bg-white dark:bg-gray-800 shadow-md hover:shadow-lg rounded-2xl overflow-hidden p-6 flex items-start gap-5 transition duration-300">
   <img
     src={user?.image}
-    alt="Mitu"
+    alt="Shihab Shamim"
     className="w-20 h-20 rounded-full object-cover ring-2 ring-blue-500"
   />
 
   <div className="flex-1 min-w-0">
     <div className="flex justify-between items-start mb-2">
       <div>
-        <h2 className="text-xl font-bold text-gray-800">{user?.name}</h2>
-        <p className="text-sm text-gray-500">{user?.email}</p>
+        <h2 className="text-xl font-bold text-gray-800 dark:text-gray-400">{user?.name}</h2>
+        <p className="text-sm text-gray-500 dark:text-gray-400">{user?.email}</p>
       </div>
 
       <div className="flex flex-col gap-2 items-end">
         <button
           onClick={() => setIsOpen(true)}
-          className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-md shadow-sm transition duration-200"
+          className="bg-blue-600 cursor-pointer hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-md shadow-sm transition duration-200"
         >
           Edit
         </button>
 
         <button
           onClick={() => setIsOpenPass(true)}
-          className="bg-gray-200 hover:bg-gray-300 text-gray-700 text-xs font-medium px-3 py-1 rounded-md shadow-sm transition duration-200"
+          className="bg-gray-200 cursor-pointer hover:bg-gray-300 text-gray-700 text-xs font-medium px-3 py-1 rounded-md shadow-sm transition duration-200"
         >
           Change Password
         </button>
