@@ -146,7 +146,7 @@ const Navbar = () => {
             {theme === "light" && (
               <svg
                 onClick={handleThemeChange}
-                className="swap-off h-10 w-10 fill-current"
+                className="swap-off h-10 w-10 fill-current cursor-pointer"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
               >
@@ -158,7 +158,7 @@ const Navbar = () => {
             {theme === "dark" && (
               <svg
                 onClick={handleThemeChange}
-                className="swap-on h-10 w-10 fill-current"
+                className="swap-on h-10 w-10 fill-current cursor-pointer"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
               >
