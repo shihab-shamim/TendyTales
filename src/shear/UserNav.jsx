@@ -24,8 +24,8 @@ export default function UserNav() {
     <div className="min-h-screen flex w-full">
       {/* Sidebar */}
       <div
-        className={`fixed z-40 md:relative top-0 left-0 min-h-screen w-64 bg-white dark:bg-gray-800 shadow-lg transition-transform duration-300 ease-in-out ${
-          sidebarOpen ? "translate-x-0 dark:bg-gray-800" : "-translate-x-full"
+        className={`fixed z-40 md:relative top-0 left-0 min-h-screen w-64 bg-[#F2F8FF] dark:bg-gray-800 shadow-lg transition-transform duration-300 ease-in-out ${
+          sidebarOpen ? "translate-x-0 dark:bg-gray-800 h-[30px]" : "-translate-x-full"
         } md:translate-x-0 md:block`}
       >
         <div className="p-6 border-b text-xl font-bold text-blue-600 dark:text-gray-400">Dashboard</div>
