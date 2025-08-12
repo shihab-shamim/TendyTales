@@ -113,17 +113,17 @@ const MyCart = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 sm:p-6">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-800 p-4 sm:p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 mb-6">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 mb-6">
           <div className="px-4 sm:px-6 py-4 border-b border-gray-200">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
-              <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Product Management</h1>
+              <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-400 ">Product Management</h1>
               {selectedProducts.length > 0 && (
                 <button
                   onClick={handleDeleteSelected}
-                  className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md flex items-center gap-2 transition-colors"
+                  className="bg-red-600 hover:bg-red-700 text-white cursor-pointer  px-4 py-2 rounded-md flex items-center gap-2 transition-colors"
                 >
                   <Trash2 className="w-4 h-4" />
                   Delete Selected ({selectedProducts.length})
@@ -134,10 +134,10 @@ const MyCart = () => {
         </div>
 
         {/* Table */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+              <thead className="bg-gray-50 dark:bg-gray-800 ">
                 <tr>
                   <th className="px-6 py-3 text-left">
                     <input
@@ -153,7 +153,7 @@ const MyCart = () => {
                   <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Actions</th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-white dark:bg-gray-800  divide-y divide-gray-200">
                 {carts.map((product) => (
                   <tr
                     key={product._id}
@@ -173,14 +173,14 @@ const MyCart = () => {
                           <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
                         </div>
                         <div className="min-w-0 flex-1">
-                          <p className="text-sm font-medium text-gray-900 truncate">{product.name}</p>
-                          <p className="text-sm text-gray-500 truncate max-w-xs">{product.description}</p>
-                          <p className="text-xs text-gray-400 mt-1">ID: {product.productId}</p>
+                          <p className="text-sm font-medium text-gray-900 truncate dark:text-gray-400">{product.name}</p>
+                          <p className="text-sm text-gray-500 truncate max-w-xs dark:text-gray-400">{product.description}</p>
+                          <p className="text-xs text-gray-400 mt-1 dark:text-gray-400">ID: {product.productId}</p>
                         </div>
                       </div>
                     </td>
                     <td className="px-6 py-4 capitalize">
-                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                      <span className="inline-flex items-center dark:text-gray-400 px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
                         {product.category}
                       </span>
                     </td>
@@ -195,10 +195,10 @@ const MyCart = () => {
                               -{product.persent}%
                             </span>
                           </div>
-                          <span className="text-sm text-gray-500">${product.price}</span>
+                          <span className="text-sm text-gray-500 dark:text-gray-400">${product.price}</span>
                         </div>
-                      ) : (
-                        <span className="text-lg font-semibold text-gray-900">৳{product.price}</span>
+                      ) : ( 
+                        <span className="text-lg font-semibold text-gray-900 dark:text-gray-400" >${product.price}</span>
                       )}
                     </td>
                    
