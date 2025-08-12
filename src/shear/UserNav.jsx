@@ -4,7 +4,7 @@ import { Link } from "react-router";
 import useAuth from "../hooks/useAuth";
 
 export default function UserNav() {
-  const {user}=useAuth();
+  
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -24,17 +24,17 @@ export default function UserNav() {
     <div className="min-h-screen flex w-full">
       {/* Sidebar */}
       <div
-        className={`fixed z-40 md:relative top-0 left-0 min-h-screen w-64 bg-white shadow-lg transition-transform duration-300 ease-in-out ${
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        className={`fixed z-40 md:relative top-0 left-0 min-h-screen w-64 bg-white dark:bg-gray-800 shadow-lg transition-transform duration-300 ease-in-out ${
+          sidebarOpen ? "translate-x-0 dark:bg-gray-800" : "-translate-x-full"
         } md:translate-x-0 md:block`}
       >
-        <div className="p-6 border-b text-xl font-bold text-blue-600">Dashboard</div>
+        <div className="p-6 border-b text-xl font-bold text-blue-600 dark:text-gray-400">Dashboard</div>
         <ul className="p-4 space-y-4">
           {menuItems.map((item, index) => (
             <li key={index}>
               <Link
                 to={item.path}
-                className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition"
+                className="flex items-center gap-2 text-gray-700 dark:text-gray-400 hover:text-blue-600 transition"
               >
                 {item.icon}
                 {item.label}

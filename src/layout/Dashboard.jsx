@@ -2,14 +2,19 @@ import { Outlet } from "react-router";
 import UserNav from "../shear/UserNav";
 import AdminNav from "../shear/AdminNav";
 import useUserRole from "../hooks/useUserRole";
+import { useEffect, useState } from "react";
 
 const Dashboard = () => {
   const {role}=useUserRole();
-
+ const [theme, setTheme] = useState(localStorage.getItem("mode") || "light");
+  useEffect(() => {
+     document.querySelector("html").setAttribute("data-theme", theme);
+     localStorage.setItem("mode", theme);
+   }, [theme]);
   return (
         <div className="flex h-screen overflow-hidden">
       {/* Fixed Sidebar */}
-      <div className="w-[30px] md:w-64 fixed top-0 left-0 h-full  shadow z-50">
+      <div className="w-[30px] md:w-64 fixed top-0 left-0 h-full  shadow z-50 dark:bg-gray-800">
         {role ? <AdminNav /> : <UserNav />}
       </div>
 
